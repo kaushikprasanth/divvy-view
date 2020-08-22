@@ -80,8 +80,8 @@ ListView = Backbone.View.extend({
 	template: _.template('
 <div class="grid-x" style="padding:20px">
 <% _.each(stations,function (station){ %> 
-<div class="small-3 cell">
- <div class="card" style="width: 300px;">
+<div class="small-6 cell">
+ <div class="card" >
   <div class="card-divider">
     <span
 		<% if (station.num_ebikes_available > 0) {%>
