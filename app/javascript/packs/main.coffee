@@ -26,6 +26,18 @@ MainView = Backbone.View.extend({
 
 	render: () ->
 		map = L.map('mapid').setView([41.8781,-87.6298], 13)
+		navigator.geolocation.getCurrentPosition(
+			(position) ->
+				LeafIcon  = L.Icon.extend({
+					options: 
+						iconSize: [38, 38]
+						iconAnchor: [22, 37]
+						popupAnchor: [-3, -37]
+				})
+				greenIcon = new LeafIcon({iconUrl: 'https://img.icons8.com/fluent/48/000000/map-pin.png'})
+				L.marker([position.coords.latitude,position.coords.longitude], {icon: greenIcon}).addTo(map).bindPopup("You are Here")
+				map.setView([position.coords.latitude,position.coords.longitude], 15)
+			(error) -> alert 'Error occurred. Error code: ' + error.code )
 		window.map = map
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
