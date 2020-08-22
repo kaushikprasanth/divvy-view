@@ -28,7 +28,7 @@ MainView = Backbone.View.extend({
 		map = L.map('mapid').setView([41.8781,-87.6298], 13)
 		navigator.geolocation.getCurrentPosition(
 			(position) ->
-				LeafIcon  = L.Icon.extend({
+				LeafIcon = L.Icon.extend({
 					options: 
 						iconSize: [38, 38]
 						iconAnchor: [22, 37]
@@ -37,7 +37,8 @@ MainView = Backbone.View.extend({
 				greenIcon = new LeafIcon({iconUrl: 'https://img.icons8.com/fluent/48/000000/map-pin.png'})
 				L.marker([position.coords.latitude,position.coords.longitude], {icon: greenIcon}).addTo(map).bindPopup("You are Here")
 				map.setView([position.coords.latitude,position.coords.longitude], 15)
-			(error) -> alert 'Error occurred. Error code: ' + error.code )
+			(error) -> alert 'Error occurred. Error code: ' + error.code,
+			{enableHighAccuracy: true,  timeout:15000} )
 		window.map = map
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -77,10 +78,8 @@ MainView = Backbone.View.extend({
 		layerGroup = L.layerGroup().addTo(window.map);
 		arr = @collection.toJSON()
 		window.markerLayer=layerGroup
-		console.log $('#eBike_only')
 		if $('#eBike_only')[0].checked
 			arr = (station for station in arr when station['num_ebikes_available'] > 0)
-		console.log arr.length
 		_.each(arr,(station) -> 
 			marker = L.marker([station.lat,station.lon]).bindPopup(station.name)
 			layerGroup.addLayer(marker);
@@ -104,6 +103,8 @@ ListView = Backbone.View.extend({
     <% if (station.num_ebikes_available > 0) {%>
     (E-Bike)
     <% } %>
+	<img id=<%=station.station_id %> class="favourite" style="height:24px;width:24px"
+	src="https://img.icons8.com/wired/64/000000/bookmark-ribbon.png"/>
 	</span>
   </div>
   <div class="card-section">
@@ -118,12 +119,20 @@ ListView = Backbone.View.extend({
 </div>
 <% }) %>
 </div>'),
+	events:
+		'click .favourite':'addFavourite'
 	initialize: (stations_arr)->
 		this.render(stations_arr)
 	render: (stations_arr) ->
-		this.$el.html(this.template({stations:stations_arr}));
+		arr= if localStorage.getItem('divvy_favourite') then localStorage.getItem('divvy_favourite') else []
+		this.$el.html(this.template({stations:stations_arr,favourites:arr}));
+	addFavourite: (event) ->
+		# arr= if localStorage.getItem('divvy_favourite') then localStorage.getItem('divvy_favourite') else []
+		# arr.push(event.target.id)
+		# window.localStorage.setItem('divvy_favourite',arr );
 
 })
 $( document ).ready(() -> 
 	mainView = new MainView()
 )
+# <img src="https://img.icons8.com/dusk/64/000000/bookmark-ribbon.png"/>
