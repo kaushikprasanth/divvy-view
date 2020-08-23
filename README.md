@@ -1,24 +1,6 @@
 # README
+A Web App to view and search Bike Station of Divvy,Chicago
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://divvy-view.herokuapp.com/
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Build with Ruby on Rails,Backbone JS and Foundation CSS
