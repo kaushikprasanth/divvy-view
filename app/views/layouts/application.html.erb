@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AppDemoV2</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-   crossorigin=""></script>
-   <!-- Compressed CSS -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+	<head>
+		<title>AppDemoV2</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+		<!-- Compressed CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
 
-   <!-- Compressed JavaScript -->
-   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+		<!-- Compressed JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+			<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+			<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
 
-  <body>
-  <div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text"><img style ="height: 22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo"></li>
-    </ul>
-  </div>
+	<body>
+	<div class="grid-y" style="height:100vh;overflow:hidden">
+	<div class="cell">
+	<div class="top-bar">
+	<div class="top-bar-left">
+		<ul class="menu">
+			<li class="menu-text"><img style ="height:22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo"></li>
+		</ul>
+	</div>
 </div>
-    <%= yield %>
-    <%= javascript_pack_tag 'main' %>
-  </body>
+</div>
+	<div class="cell medium-auto medium-cell-block-container"> 
+	<%= yield %>
+	<%= javascript_pack_tag 'main' %>
+	</div>
+	<div class="cell" style="z-index:1000;background-color: #ddd;position: fixed;bottom: 0;" >
+
+		Code in GitHub
+
+</div>
+</div>
+	</body>
 </html>
