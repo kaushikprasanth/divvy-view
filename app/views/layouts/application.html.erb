@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>AppDemoV2</title>
+		<title>Divvy View</title>
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -26,8 +26,10 @@
 	<div class="top-bar">
 	<div class="top-bar-left">
 		<ul class="menu">
-			<li class="menu-text"><img style ="height:22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo"></li>
-		</ul>
+			<li class="menu-text"><a style="padding:0" target="_blank" href="https://www.divvybikes.com/">
+			<img style ="height:22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo"></li>
+		</a>
+			</ul>
 	</div>
 </div>
 </div>
@@ -35,9 +37,10 @@
 	<%= yield %>
 	<%= javascript_pack_tag 'main' %>
 	</div>
-	<div class="cell" style="z-index:1000;background-color: #ddd;position: fixed;bottom: 0;" >
+	<div class="cell" style="z-index:1000;background-color: #ddd;position: fixed;bottom: 0;padding:5px 10px" >
 
-		Code in GitHub
+		<span style="float:left"> Code in <a target="_blank" href="https://github.com/kaushikprasanth/divvy-view/">GitHub</a> </span>
+		<span style="float:right">Icons by  <a target="_blank" href="https://icons8.com/">Icons8</a></span>
 
 </div>
 </div>
