@@ -26,16 +26,33 @@
 	<div class="top-bar">
 	<div class="top-bar-left">
 		<ul class="menu">
-			<li class="menu-text"><a style="padding:0" target="_blank" href="https://www.divvybikes.com/">
-			<img style ="height:22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo"></li>
+		<% if @chi %>
+		<li class="menu-text">
+		<a style="padding:0" target="_blank" href="https://www.divvybikes.com/">
+		<img style ="height:22px;width:80px" src="//d21xlh2maitm24.cloudfront.net/chi/Divvy-Header-Logo.svg?mtime=20160809095032" class="logo" alt="Logo">
+		</li>
 		</a>
-			</ul>
+		<% end %>
+		<% if @sf %>
+		<li class="menu-text">
+		<a style="padding:0" target="_blank" href="https://www.lyft.com/bikes/bay-wheels">
+		<img style ="height:22px;width:150px" src="//images.ctfassets.net/q8mvene1wzq4/65Jk1odvJfWrI5UIPsvGbl/87b59251a7c3ed5c4a8eabcf94768c92/lyft-baywheels-logo.svg" class="logo" alt="Logo">
+		</li>
+		</a>
+		<% end %>
+		
+		</ul>
 	</div>
 </div>
 </div>
 	<div class="cell medium-auto medium-cell-block-container"> 
 	<%= yield %>
+	<% if @chi %>
 	<%= javascript_pack_tag 'main' %>
+	<% end %>
+	<% if @sf %>
+	<%= javascript_pack_tag 'bay_area' %>
+	<% end %>
 	</div>
 	<div class="cell" style="z-index:1000;background-color: #ddd;position: fixed;bottom: 0;padding:5px 10px" >
 
