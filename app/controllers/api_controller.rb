@@ -31,7 +31,7 @@ class ApiController < ApplicationController
         params = {operationName:'GetSystemSupply', variables:{}, query:"query GetSystemSupply {\n  supply {\n    stations {\n      stationId\n      stationName\n      location {\n        lat\n        lng\n        __typename\n      }\n      bikesAvailable\n      bikeDocksAvailable\n      ebikesAvailable\n      totalBikesAvailable\n      isValet\n      isOffline\n      isLightweight\n      displayMessages\n      siteId\n      ebikes {\n        batteryStatus {\n          distanceRemaining {\n            value\n            unit\n            __typename\n          }\n          percent\n          __typename\n        }\n        __typename\n      }\n      lastUpdatedMs\n      __typename\n    }\n    rideables {\n      location {\n        lat\n        lng\n        __typename\n      }\n      rideableType\n      batteryStatus {\n        distanceRemaining {\n          value\n          unit\n          __typename\n        }\n        percent\n        __typename\n      }\n      __typename\n    }\n    notices {\n      localizedTitle\n      localizedDescription\n      __typename\n    }\n    requestErrors {\n      localizedTitle\n      localizedDescription\n      __typename\n    }\n    __typename\n  }\n}\n"}.to_json
         
         begin
-            r = RestClient.post url,params,{ content_type: :json, accept: :json }
+            r = RestClient::Request.execute(method: :post, url: url,payload: params,headers: { content_type: :json, accept: :json}, verify_ssl: false) 
             results =  JSON.parse(r.body.to_str)["data"]["supply"]['stations']
             results.each do |station|
                 station['name'] = station['stationName']
